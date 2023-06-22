@@ -71,6 +71,7 @@ export default function ProductList() {
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const products = useSelector(selectAllProducts);
+  console.log(products);
   console.log(selectAllProducts);
 
   useEffect(() => {

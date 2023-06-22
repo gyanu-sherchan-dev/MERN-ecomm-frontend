@@ -10,13 +10,14 @@ export const fetchAllProductsAsync = createAsyncThunk(
   "product/fetchAllProducts",
   async () => {
     const response = await fetchAllProducts();
+    console.log(response.data);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
 
 export const productSlice = createSlice({
-  name: "product",
+  name: "pro",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
@@ -39,7 +40,6 @@ export const productSlice = createSlice({
 
 export const { increment } = productSlice.actions;
 
-export const selectAllProducts = (state) => state.product.products;
-console.log(selectAllProducts);
+export const selectAllProducts = (state) => state.pro.products;
 
 export default productSlice.reducer;
