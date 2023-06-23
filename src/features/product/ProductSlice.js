@@ -10,36 +10,32 @@ export const fetchAllProductsAsync = createAsyncThunk(
   "product/fetchAllProducts",
   async () => {
     const response = await fetchAllProducts();
-    console.log(response.data);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
-
 export const productSlice = createSlice({
-  name: "pro",
+  name: "product",
   initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     increment: (state) => {
       state.value += 1;
     },
-
-    extraReducers: (builder) => {
-      builder
-        .addCase(fetchAllProductsAsync.pending, (state) => {
-          state.status = "loading";
-        })
-        .addCase(fetchAllProductsAsync.fulfilled, (state, action) => {
-          state.status = "idle";
-          state.products = action.payload;
-        });
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchAllProductsAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchAllProductsAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.products = action.payload;
+      });
   },
 });
 
 export const { increment } = productSlice.actions;
 
-export const selectAllProducts = (state) => state.pro.products;
+export const selectAllProducts = (state) => state.product.products;
 
 export default productSlice.reducer;
